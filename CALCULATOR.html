@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calc.css">  
+</head>
+<body>
+    <div class="calculator">
+        <input id="calculatorShow" readonly>
+        <div class="keys">
+            <button onclick="toDisplay('+')" class="operator-btn">+</button>
+            <button onclick="toDisplay('7')">7</button>
+            <button onclick="toDisplay('8')">8</button>
+            <button onclick="toDisplay('9')">9</button>
+            <button onclick="toDisplay('-')" class="operator-btn">-</button>
+            <button onclick="toDisplay('3')">3</button>
+            <button onclick="toDisplay('4')">4</button>
+            <button onclick="toDisplay('5')">5</button>
+            <button onclick="toDisplay('*')" class="operator-btn">*</button>
+            <button onclick="toDisplay('1')">1</button>
+            <button onclick="toDisplay('2')">2</button>
+            <button onclick="toDisplay('3')">3</button>
+            <button onclick="toDisplay('/')" class="operator-btn">/</button>
+            <button onclick="toDisplay('0')">0</button>
+            <button onclick="toDisplay('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="clearDisplay()" class="operator-btn">C</button>
+            <button onclick="viewHistory()" class="operator-btn">History</button>
+
+        </div>
+    </div>
+
+    <script>
+    const calculatorShow = document.getElementById("calculatorShow");
+    let history = []; 
+    function toDisplay(input) {
+        calculatorShow.value += input;
+    }
+
+    function calculate() {
+        try {
+            let result = eval(calculatorShow.value);
+            history.push(calculatorShow.value + " = " + result); 
+            calculatorShow.value = result;
+        } catch (error) {
+            calculatorShow.value = "Error";
+        }
+    }
+
+    function clearDisplay() {
+        calculatorShow.value = '';
+    }
+
+    function viewHistory() {
+        if (history.length === 0) {
+            alert("No history available.");
+        } else {
+            alert("History:\n" + history.join("\n"));
+        }
+    }
+    </script>
+</body>
+</html>
